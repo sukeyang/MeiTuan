@@ -7,13 +7,39 @@
  */
 
 //import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ListView, Image, StatusBar } from 'react-native';
+import React, {
+    Component
+} from 'react';
+import {
+    View,
+    Text,
+    StyleSheet,
+    ScrollView,
+    TouchableOpacity,
+    ListView,
+    Image,
+    StatusBar
+} from 'react-native';
 
-import { Heading1, Heading2, Paragraph } from '../../widget/Text'
-import { color, Button, NavigationItem, RefreshListView, RefreshState, SearchBar, SpacingView } from '../../widget'
+import {
+    Heading1,
+    Heading2,
+    Paragraph
+} from '../../widget/Text'
+import {
+    color,
+    Button,
+    NavigationItem,
+    RefreshListView,
+    RefreshState,
+    SearchBar,
+    SpacingView
+} from '../../widget'
 
-import { screen, system } from '../../common'
+import {
+    screen,
+    system
+} from '../../common'
 import api from '../../api'
 
 
@@ -24,42 +50,54 @@ import GroupPurchaseCell from '../GroupPurchase/GroupPurchaseCell'
 // create a component
 class HomeScene extends Component {
 
-    static navigationOptions = ({ navigation }) => ({
+    static navigationOptions = ({
+        navigation
+    }) => ({
         headerTitle: (
             <TouchableOpacity style={styles.searchBar}>
                 <Image source={require('../../img/Home/search_icon.png')} style={styles.searchIcon} />
                 <Paragraph>一点点</Paragraph>
             </TouchableOpacity>
         ),
-        headerRight: (
-            <NavigationItem
-                icon={require('../../img/Home/icon_navigationItem_message_white@2x.png')}
-                onPress={() => {
+        headerRight: ( < NavigationItem icon = {
+                require('../../img/Home/icon_navigationItem_message_white@2x.png')
+            }
+            onPress = {
+                () => {
 
-                }}
+                }
+            }
             />
         ),
-        headerLeft: (
-            <NavigationItem
-                title='福州'
-                titleStyle={{ color: 'white' }}
-                onPress={() => {
+        headerLeft: ( < NavigationItem title = '福州'
+            titleStyle = {
+                {
+                    color: 'white'
+                }
+            }
+            onPress = {
+                () => {
 
-                }}
+                }
+            }
             />
         ),
-        headerStyle: { backgroundColor: color.theme },
+        headerStyle: {
+            backgroundColor: color.theme
+        },
     })
 
     state: {
-        discounts: Array<Object>,
+        discounts: Array < Object > ,
         dataSource: ListView.DataSource
     }
 
     constructor(props: Object) {
         super(props)
 
-        let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+        let ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2
+        })
 
         this.state = {
             discounts: [],
@@ -124,7 +162,9 @@ class HomeScene extends Component {
 
             let location = discount.tplurl.indexOf('http')
             let url = discount.tplurl.slice(location)
-            this.props.navigation.navigate('Web', { url: url })
+            this.props.navigation.navigate('Web', {
+                url: url
+            })
         }
     }
 
@@ -163,7 +203,9 @@ class HomeScene extends Component {
             .then((response) => response.json())
             .then((json) => {
                 console.log(JSON.stringify(json));
-                this.setState({ discounts: json.data })
+                this.setState({
+                    discounts: json.data
+                })
             })
             .catch((error) => {
                 alert(error)

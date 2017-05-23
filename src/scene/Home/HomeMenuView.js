@@ -7,11 +7,25 @@
  */
 
 //import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, } from 'react-native';
+import React, {
+    Component
+} from 'react';
+import {
+    View,
+    Text,
+    StyleSheet,
+    ScrollView,
+} from 'react-native';
 
-import { screen, system, tool } from '../../common'
-import { color, PageControl } from '../../widget'
+import {
+    screen,
+    system,
+    tool
+} from '../../common'
+import {
+    color,
+    PageControl
+} from '../../widget'
 import HomeMenuItem from './HomeMenuItem'
 
 // create a component
@@ -30,17 +44,27 @@ class HomeMenuView extends Component {
     }
 
     render() {
-        let { menuInfos, onMenuSelected } = this.props
+        let {
+            menuInfos,
+            onMenuSelected
+        } = this.props
 
         let menuItems = menuInfos.map(
-            (info, i) => (
-                <HomeMenuItem
-                    key={info.title}
-                    title={info.title}
-                    icon={info.icon}
-                    onPress={() => {
+            (info, i) => ( < HomeMenuItem key = {
+                    info.title
+                }
+                title = {
+                    info.title
+                }
+                icon = {
+                    info.icon
+                }
+                onPress = {
+                    () => {
                         onMenuSelected && onMenuSelected(i)
-                    }} />
+                    }
+                }
+                />
             )
         )
 
@@ -103,8 +127,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
     },
-    contentContainer: {
-    },
+    contentContainer: {},
     menuContainer: {
         flexDirection: 'row',
     },
